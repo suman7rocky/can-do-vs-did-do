@@ -25,7 +25,7 @@
 
 @layer components {
 	.boldText {
-		@apply font-bold text-xl;
+		@apply font-bold text-xl text-center p-6 rounded-xl border;
 	}
 }
 

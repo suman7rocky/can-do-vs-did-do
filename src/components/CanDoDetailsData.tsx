@@ -1,11 +1,14 @@
-import { AnalyticalTable, Card, CardHeader } from "@ui5/webcomponents-react";
-import TableHeader from "./TableHeader";
+import { AnalyticalTable, Card } from "@ui5/webcomponents-react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import getCookie from "../lib/getCookie";
 import { canDoDetailsDataApiResponse } from "../utils/types";
 
-const CanDoDetailsData = ({ rule }: { rule: string }) => {
+type CanDoDetailsDataProps = {
+	rule: string;
+};
+
+const CanDoDetailsData = ({ rule }: CanDoDetailsDataProps) => {
 	const endPoint = `${import.meta.env.VITE_BASE_LOGIN_URL}/api/irmbi/canDoData`;
 
 	const fetchData = async () => {
@@ -98,7 +101,7 @@ const CanDoDetailsData = ({ rule }: { rule: string }) => {
 							],
 						},
 					],
-					columnName: { rule },
+					columnName: rule,
 					projectID: 1,
 					tableName: "sap_out",
 					customFilters: {
@@ -132,7 +135,6 @@ const CanDoDetailsData = ({ rule }: { rule: string }) => {
 					},
 				}
 			);
-
 			return response.data;
 		} catch (error) {
 			try {
@@ -155,8 +157,7 @@ const CanDoDetailsData = ({ rule }: { rule: string }) => {
 	});
 
 	const canDoDetailsData = data;
-	console.table(canDoDetailsData);
-
+	console.log(data);
 	if (isError) {
 		return <div>Something went wrong</div>;
 	}
@@ -166,80 +167,95 @@ const CanDoDetailsData = ({ rule }: { rule: string }) => {
 			Header: "Business Process",
 			accessor: "BUSINESS_PROCESS",
 			headerTooltip: "Business Process",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Risk Rating",
 			accessor: "risk_level",
-			headerTooltip: "Rule Name",
+			headerTooltip: "Risk Rating",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Rule Name",
 			accessor: "sod_name",
-			headerTooltip: "Risk Description",
+			headerTooltip: "Rule Name",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "User Name",
 			accessor: "user_display",
-			headerTooltip: "Risk Rating",
+			headerTooltip: "User Name",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Function 1",
 			accessor: "function_name",
-			headerTooltip: "Active Can Do Users",
+			headerTooltip: "Function 1",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Role",
 			accessor: "role_name",
 			headerTooltip: "Role",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Type of Role Conflict",
 			accessor: "role_conflict_type",
-			headerTooltip: "Instances",
+			headerTooltip: "Type of Role Conflict",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Transaction Code Leg 1",
 			accessor: "transaction_code",
-			headerTooltip: "Instances",
+			headerTooltip: "Transaction Code Leg 1",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Incident Path",
 			accessor: "incident_path",
-			headerTooltip: "Instances",
+			headerTooltip: "Incident Path",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Function 2",
 			accessor: "function_name2",
-			headerTooltip: "Instances",
+			headerTooltip: "Function 2",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Conflicting Role Leg 2",
 			accessor: "transaction_code2",
-			headerTooltip: "Instances",
+			headerTooltip: "Conflicting Role Leg 2",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Conflicting Transaction Code Leg 2",
 			accessor: "conflicting_role_leg2",
-			headerTooltip: "Instances",
+			headerTooltip: "Conflicting Transaction Code Leg 2",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Conflict Type",
 			accessor: "conflict_type",
-			headerTooltip: "Instances",
+			headerTooltip: "Conflict Type",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Org Level",
 			accessor: "org_level",
-			headerTooltip: "Instances",
+			headerTooltip: "Org Level",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Org Value",
 			accessor: "org_value",
-			headerTooltip: "Instances",
+			headerTooltip: "Org Value",
+			disableDragAndDrop: false,
 		},
 	];
 
-	const tableData: canDoDetailsDataApiResponse[] = canDoDetailsData?.map(
+	const tableData: canDoDetailsDataApiResponse[] = canDoDetailsData?.data.map(
 		(item: canDoDetailsDataApiResponse) => {
 			return {
 				BUSINESS_PROCESS: item.BUSINESS_PROCESS,
@@ -261,10 +277,12 @@ const CanDoDetailsData = ({ rule }: { rule: string }) => {
 		}
 	);
 
+	console.table(canDoDetailsData);
+	// const tableData: canDoDetailsDataApiResponse[] = canDoDetailsData;
+
 	return (
 		<Card className="p-2">
-			<TableHeader title="Can Do Summary" />
-			<CardHeader />
+			<div className="p-3 font-bold text-xl">Can Do Summary Details</div>
 			<div className="p-4">
 				<AnalyticalTable
 					style={{ width: "100%" }}

@@ -25,7 +25,7 @@ const getUserID = async (
 	} catch (error) {
 		console.error(error);
 		setLoading(false);
-		setError("Invalid Username or Password");
+		setError("UserID not found. Please check UserID.");
 	}
 };
 

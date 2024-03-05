@@ -28,7 +28,7 @@ const logIn = async (
 		return response.data;
 	} catch (error) {
 		setLoading(false);
-		setError("Invalid Username or Password");
+		setError("Invalid Password. Please check Password.");
 		console.error(error);
 		return null;
 	}

@@ -92,7 +92,7 @@ const DataTable = ({ data }: DataTableProps) => {
 
 					{/* High */}
 					<TableCell>
-						<Label className="boldText text-center">
+						<Label className="boldText ">
 							{data.mstObj[showDataFor]?.High.rules || 0}
 							<span>{}</span>
 						</Label>

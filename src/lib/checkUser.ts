@@ -10,6 +10,7 @@ const checkUser = async (
 		if (setLoading) {
 			setLoading(true);
 		}
+
 		const response = await axios.post(
 			`${import.meta.env.VITE_BASE_LOGIN_URL}/api/auth/userpresentcheck`,
 			data,
@@ -19,14 +20,15 @@ const checkUser = async (
 				},
 			}
 		);
+		console.log(response.data);
 		return response.data;
 	} catch (error) {
-		console.error(error);
+		console.error("error from user check", error);
 		if (setLoading) {
 			setLoading(false);
 		}
 		if (setError) {
-			setError("Invalid Username or Password");
+			setError("User not found. Please check username.");
 		}
 		return null;
 	}

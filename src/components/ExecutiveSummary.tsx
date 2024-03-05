@@ -2,18 +2,28 @@ import { Card, FlexBox, Loader } from "@ui5/webcomponents-react";
 import DataCard from "./DataCard";
 import DataTable from "./DataTable";
 import axios, { AxiosError } from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import getCookie from "../lib/getCookie";
 import { ApiResponse } from "../utils/types";
 import { calcPercentage } from "../utils/calcPercentage";
 import TableHeader from "./TableHeader";
+import { useState, useEffect, useCallback } from "react";
 
 const ExecutiveSummary = () => {
+	const [sod, setSod] = useState<boolean>(false);
+	const [sensitive, setSensitive] = useState<boolean>(false);
+	const [all, setAll] = useState<boolean>(false);
+	const [refresh, setRefresh] = useState<boolean>(false);
+
+	const queryClient = useQueryClient();
+
+	console.log(sod, sensitive, all);
+
 	const endPoint = `${
 		import.meta.env.VITE_BASE_LOGIN_URL
 	}/api/irmbi/read/executivechartdata`;
 
-	const fetchData = async () => {
+	const fetchData = useCallback(async () => {
 		try {
 			const savedCookie = getCookie("authToken");
 			const cookie = `Basic ${savedCookie}`;
@@ -140,13 +150,24 @@ const ExecutiveSummary = () => {
 				console.error(error);
 			}
 		}
-	};
+	}, [endPoint]);
 
 	const { data, isError, isFetching, isLoading } = useQuery({
 		queryKey: ["executiveData"],
 		queryFn: fetchData,
 		retry: 3,
 	});
+
+	useEffect(() => {
+		if (refresh) {
+			fetchData();
+			setRefresh(false);
+			console.log("fetching data");
+			queryClient.invalidateQueries({
+				predicate: (query) => query.queryKey[0] === "executiveData",
+			});
+		}
+	}, [fetchData, refresh, queryClient]);
 
 	if (data === undefined) return null;
 
@@ -168,8 +189,15 @@ const ExecutiveSummary = () => {
 
 	return (
 		<Card className="p-3 mb-3 mt-3">
-			<div>{isFetching || (isLoading && <Loader progress={60} />)}</div>
-			<TableHeader title="Executive Summary" />
+			{isFetching && <Loader progress={60} />}
+			{isLoading && <Loader progress={60} />}
+			<TableHeader
+				setAll={setAll}
+				setRefresh={setRefresh}
+				setSensitive={setSensitive}
+				setSod={setSod}
+				title="Executive Summary"
+			/>
 			<FlexBox
 				alignItems="Center"
 				justifyContent="Center">

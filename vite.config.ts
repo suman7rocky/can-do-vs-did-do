@@ -6,16 +6,10 @@ export default defineConfig({
 	plugins: [
 		react(),
 		federation({
-			name: "processControlFlow",
+			name: "CanDoVSDidDo",
 			filename: "remoteEntry.js",
 			exposes: {},
-			shared: [
-				"react",
-				"react-dom",
-				"tailwindcss",
-				"react-router-dom",
-				"@ui5/webcomponents-react",
-			],
+			shared: [],
 		}),
 	],
 	optimizeDeps: {
@@ -27,5 +21,6 @@ export default defineConfig({
 		target: "esnext",
 		cssCodeSplit: false,
 		minify: "esbuild",
+		cssMinify: "esbuild",
 	},
 });

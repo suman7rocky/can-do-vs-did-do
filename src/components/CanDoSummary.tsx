@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import getCookie from "../lib/getCookie";
 import { candoDataType } from "../utils/types";
-import TableHeader from "./TableHeader";
 import CanDoDetailsData from "./CanDoDetailsData";
 
 const CanDoSummary = () => {
@@ -167,36 +166,43 @@ const CanDoSummary = () => {
 			Header: "Business Process",
 			accessor: "BUSINESS_PROCESS",
 			headerTooltip: "Business Process",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Rule Name",
 			accessor: "sod_name",
 			headerTooltip: "Rule Name",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Risk Description",
 			accessor: "risk_description",
 			headerTooltip: "Risk Description",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Risk Rating",
 			accessor: "SOD_RISK_RATING",
 			headerTooltip: "Risk Rating",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Active Can Do Users",
 			accessor: "can_do_users",
 			headerTooltip: "Active Can Do Users",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Role",
 			accessor: "role_name",
 			headerTooltip: "Role",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "Instances",
 			accessor: "xx_row_id",
 			headerTooltip: "Instances",
+			disableDragAndDrop: false,
 		},
 		{
 			Header: "SoD Report",
@@ -204,12 +210,13 @@ const CanDoSummary = () => {
 			disableGroupBy: true,
 			disableResizing: true,
 			disableSortBy: true,
+			disableDragAndDrop: false,
 			Cell: () => {
 				return (
 					<Button
 						onClick={(e) => {
 							const detailsData =
-								e.currentTarget.parentNode?.parentElement?.childNodes[2]
+								e.currentTarget.parentNode?.parentElement?.childNodes[1]
 									?.textContent ?? "";
 
 							showModal({ rule: detailsData });
@@ -244,8 +251,8 @@ const CanDoSummary = () => {
 	);
 
 	return (
-		<Card className="p-2">
-			<TableHeader title="Can Do Summary" />
+		<Card className="p-2 mb-2">
+			<h3 className="text-xl font-bold pt-4 pl-6">Can Do Summary</h3>
 			<CardHeader />
 			<div className="p-4">
 				<AnalyticalTable
@@ -258,9 +265,6 @@ const CanDoSummary = () => {
 					loading={isFetching || isLoading}
 					columns={columns}
 					data={tableData}
-					onRowClick={(e) => {
-						console.log(e?.target);
-					}}
 					filterable
 					groupBy={[]}
 					infiniteScroll
@@ -268,7 +272,6 @@ const CanDoSummary = () => {
 					selectedRowIds={{
 						3: true,
 					}}
-					selectionMode="SingleSelect"
 				/>
 			</div>
 		</Card>
