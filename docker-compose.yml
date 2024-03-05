@@ -1,0 +1,14 @@
+version: "1.0.0"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iRM_Dashboard
+    environment:
+      - PORT=${PORT}
+    ports:
+      - "5001:3001"
+    volumes:
+      - ./src:/app/src
