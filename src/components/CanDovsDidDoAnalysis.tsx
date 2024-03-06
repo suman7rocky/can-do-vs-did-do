@@ -4,6 +4,7 @@ import {
 	Bar,
 	Button,
 	Card,
+	Loader,
 	Modals,
 } from "@ui5/webcomponents-react";
 import getCookie from "../lib/getCookie";
@@ -175,64 +176,77 @@ const CanDovsDidDoAnalysis = () => {
 			Header: "Level",
 			accessor: "Level",
 			headerTooltip: "Level",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Risk ID",
 			accessor: "sod_risk_id",
-			disableFilters: false,
-			disableGroupBy: true,
-			disableSortBy: false,
+			headerTooltip: "Risk ID",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "SoD Rule",
 			accessor: "sod_rule",
+			headerTooltip: "SoD Rule",
+			disableDragAndDrop: true,
 		},
 		{
 			accessor: "business_process",
 			Header: "Buisness Process",
+			headerTooltip: "Buisness Process",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "SoD Risk Rating",
 			accessor: "sod_risk_rating",
 			headerTooltip: "SoD Risk Rating",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Org Level",
 			accessor: "org_level",
 			headerTooltip: "Org Level",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Org Value",
 			accessor: "org_value",
 			headerTooltip: "Org Value",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Active Can Do Users",
 			accessor: "can_do_users",
 			headerTooltip: "Active Can Do Users",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Did Do Users",
 			accessor: "diddo_users",
 			headerTooltip: "Did Do Users",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Transaction Count",
 			accessor: "breach_count",
 			headerTooltip: "Transaction Count",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Transaction Value",
 			accessor: "breach_value",
 			headerTooltip: "Transaction Value",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Local Currency",
 			accessor: "local_currency",
 			headerTooltip: "Local Currency",
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Transaction Details",
+			disableDragAndDrop: true,
 			accessor: "raw_json",
 			disableFilters: true,
 			disableGroupBy: true,
@@ -290,6 +304,8 @@ const CanDovsDidDoAnalysis = () => {
 	return (
 		<Card className="p-2">
 			<CardHeader title="Can Do vs Did Do Analysis" />
+			{isFetching && <Loader progress={60} />}
+			{isLoading && <Loader progress={60} />}
 			<div className="p-4">
 				<AnalyticalTable
 					style={{ width: "100%" }}

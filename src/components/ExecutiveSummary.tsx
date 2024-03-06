@@ -10,14 +10,13 @@ import TableHeader from "./TableHeader";
 import { useState, useEffect, useCallback } from "react";
 
 const ExecutiveSummary = () => {
-	const [sod, setSod] = useState<boolean>(false);
-	const [sensitive, setSensitive] = useState<boolean>(false);
-	const [all, setAll] = useState<boolean>(false);
+	const [, setSod] = useState<boolean>(false);
+	const [, setSensitive] = useState<boolean>(false);
+	const [, setAll] = useState<boolean>(false);
 	const [refresh, setRefresh] = useState<boolean>(false);
 
 	const queryClient = useQueryClient();
 
-	console.log(sod, sensitive, all);
 
 	const endPoint = `${
 		import.meta.env.VITE_BASE_LOGIN_URL
@@ -162,7 +161,6 @@ const ExecutiveSummary = () => {
 		if (refresh) {
 			fetchData();
 			setRefresh(false);
-			console.log("fetching data");
 			queryClient.invalidateQueries({
 				predicate: (query) => query.queryKey[0] === "executiveData",
 			});

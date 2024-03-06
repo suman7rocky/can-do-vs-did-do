@@ -33,11 +33,11 @@ const CardHeader = ({ title }: CanDoVSDidDoHeaderProps) => {
 					onInput={function _a() {}}
 					onSelectionChange={function _a() {}}
 					valueState="None">
-					<ComboBoxItem text="ComboBox Entry 1" />
-					<ComboBoxItem text="ComboBox Entry 2" />
-					<ComboBoxItem text="ComboBox Entry 3" />
-					<ComboBoxItem text="ComboBox Entry 4" />
-					<ComboBoxItem text="ComboBox Entry 5" />
+					<ComboBoxItem text="Procure to Pay" />
+					<ComboBoxItem text="Information Technology" />
+					<ComboBoxItem text="Record to Report" />
+					<ComboBoxItem text="Hire to Retire" />
+					<ComboBoxItem text="Order to Cash" />
 				</MultiComboBox>
 			</FlexBox>
 		</div>

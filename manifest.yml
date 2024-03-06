@@ -1,6 +1,7 @@
 applications:
-  - name: process-control-flow
+  - name: iRM_Dashboard
     instances: 1
     buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
-    memory: 256M
+    memory: 512M
+    random-route: true
     path: ./dist/

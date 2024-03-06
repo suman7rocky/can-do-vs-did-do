@@ -1,22 +1,22 @@
 import { CheckBox, FlexBox, Label, Button } from "@ui5/webcomponents-react";
 
-type TableHeaderProps = {
+type CanDoSummaryHeaderProps = {
 	title: string;
-	setSod: (value: boolean) => void;
-	setSensitive: (value: boolean) => void;
-	setAll: (value: boolean) => void;
-	setRefresh: (value: (prev: boolean) => boolean) => void;
+	setSodSection: (value: boolean) => void;
+	setSensitiveSection: (value: boolean) => void;
+	setAllSection: (value: boolean) => void;
+	setRefetch: (value: (prev: boolean) => boolean) => void;
 };
 
-const TableHeader = ({
+const CanDoSummaryHeader = ({
 	title,
-	setAll,
-	setRefresh,
-	setSensitive,
-	setSod,
-}: TableHeaderProps) => {
+	setSodSection,
+	setAllSection,
+	setSensitiveSection,
+	setRefetch,
+}: CanDoSummaryHeaderProps) => {
 	const handleClick = () => {
-		setRefresh((prev) => !prev);
+		setRefetch((prev) => !prev);
 	};
 	return (
 		<div className="mb-6">
@@ -28,7 +28,7 @@ const TableHeader = ({
 				style={{ display: "flex", alignItems: "stretch" }}>
 				{/* SOD Checkbox */}
 				<div style={{ display: "flex", alignItems: "stretch" }}>
-					<CheckBox onChange={(event) => setSod(event.target.checked)} />
+					<CheckBox onChange={(event) => setSodSection(event.target.checked)} />
 					<Label
 						className="text-xl"
 						style={{ alignItems: "center" }}>
@@ -38,7 +38,9 @@ const TableHeader = ({
 
 				{/* Sensitive Access Checkbox */}
 				<div style={{ display: "flex", alignItems: "stretch" }}>
-					<CheckBox onChange={(event) => setSensitive(event.target.checked)} />
+					<CheckBox
+						onChange={(event) => setSensitiveSection(event.target.checked)}
+					/>
 					<Label
 						className="text-xl"
 						style={{ alignItems: "center" }}>
@@ -48,7 +50,7 @@ const TableHeader = ({
 
 				{/* All Checkbox */}
 				<div style={{ display: "flex", alignItems: "stretch" }}>
-					<CheckBox onChange={(event) => setAll(event.target.checked)} />
+					<CheckBox onChange={(event) => setAllSection(event.target.checked)} />
 					<Label
 						className="text-xl"
 						style={{ alignItems: "center" }}>
@@ -66,4 +68,4 @@ const TableHeader = ({
 	);
 };
 
-export default TableHeader;
+export default CanDoSummaryHeader;

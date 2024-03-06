@@ -1,4 +1,4 @@
-import { AnalyticalTable, Card } from "@ui5/webcomponents-react";
+import { AnalyticalTable, Card, Loader } from "@ui5/webcomponents-react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import getCookie from "../lib/getCookie";
@@ -157,7 +157,6 @@ const CanDoDetailsData = ({ rule }: CanDoDetailsDataProps) => {
 	});
 
 	const canDoDetailsData = data;
-	console.log(data);
 	if (isError) {
 		return <div>Something went wrong</div>;
 	}
@@ -167,91 +166,91 @@ const CanDoDetailsData = ({ rule }: CanDoDetailsDataProps) => {
 			Header: "Business Process",
 			accessor: "BUSINESS_PROCESS",
 			headerTooltip: "Business Process",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Risk Rating",
 			accessor: "risk_level",
 			headerTooltip: "Risk Rating",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Rule Name",
 			accessor: "sod_name",
 			headerTooltip: "Rule Name",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "User Name",
 			accessor: "user_display",
 			headerTooltip: "User Name",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Function 1",
 			accessor: "function_name",
 			headerTooltip: "Function 1",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Role",
 			accessor: "role_name",
 			headerTooltip: "Role",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Type of Role Conflict",
 			accessor: "role_conflict_type",
 			headerTooltip: "Type of Role Conflict",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Transaction Code Leg 1",
 			accessor: "transaction_code",
 			headerTooltip: "Transaction Code Leg 1",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Incident Path",
 			accessor: "incident_path",
 			headerTooltip: "Incident Path",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Function 2",
 			accessor: "function_name2",
 			headerTooltip: "Function 2",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Conflicting Role Leg 2",
 			accessor: "transaction_code2",
 			headerTooltip: "Conflicting Role Leg 2",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Conflicting Transaction Code Leg 2",
 			accessor: "conflicting_role_leg2",
 			headerTooltip: "Conflicting Transaction Code Leg 2",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Conflict Type",
 			accessor: "conflict_type",
 			headerTooltip: "Conflict Type",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Org Level",
 			accessor: "org_level",
 			headerTooltip: "Org Level",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 		{
 			Header: "Org Value",
 			accessor: "org_value",
 			headerTooltip: "Org Value",
-			disableDragAndDrop: false,
+			disableDragAndDrop: true,
 		},
 	];
 
@@ -277,12 +276,11 @@ const CanDoDetailsData = ({ rule }: CanDoDetailsDataProps) => {
 		}
 	);
 
-	console.table(canDoDetailsData);
-	// const tableData: canDoDetailsDataApiResponse[] = canDoDetailsData;
-
 	return (
 		<Card className="p-2">
 			<div className="p-3 font-bold text-xl">Can Do Summary Details</div>
+			{isFetching && <Loader progress={60} />}
+			{isLoading && <Loader progress={60} />}
 			<div className="p-4">
 				<AnalyticalTable
 					style={{ width: "100%" }}

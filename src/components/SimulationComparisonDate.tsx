@@ -4,6 +4,7 @@ import {
 	FlexBox,
 	Text,
 } from "@ui5/webcomponents-react";
+import getCurrentDatetime from "../utils/getCurrentDatetime";
 
 const SimulationComparisonDate = () => {
 	return (
@@ -28,6 +29,7 @@ const SimulationComparisonDate = () => {
 				onInput={function _a() {}}
 				onValueStateChange={function _a() {}}
 				primaryCalendarType="Gregorian"
+				value={getCurrentDatetime()}
 				valueState="None"
 			/>
 			<DateTimePicker
@@ -35,6 +37,7 @@ const SimulationComparisonDate = () => {
 				onInput={function _a() {}}
 				onValueStateChange={function _a() {}}
 				primaryCalendarType="Gregorian"
+				value={getCurrentDatetime()}
 				valueState="None"
 			/>
 			<Button>Apply</Button>

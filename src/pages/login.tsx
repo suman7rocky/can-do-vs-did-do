@@ -9,11 +9,10 @@ import {
 	FormGroup,
 	FormItem,
 	Input,
+	Loader,
 } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents/dist/features/InputElementsFormSupport.js";
 import { setCookie } from "../lib/setCookie";
-import checkUser from "../lib/checkUser";
-import getUserID from "../lib/getUserID";
 import logIn from "../lib/login";
 import { SignInFormData } from "../utils/types";
 
@@ -45,25 +44,10 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 	});
 
 	const onSubmit: SubmitHandler<SignInFormData> = async (data) => {
-		const loginData = {
-			Username: data.Username,
-			Password: data.Password,
-		};
-
-		const user = {
-			Username: data.Username,
-		};
-
-		const userExists = await checkUser(user, setError, setLoading);
-		if (!userExists) return;
-
-		const res = await getUserID(loginData, setError, setLoading);
-
-		const custID = res?.cdetails?.customerId[0]?.id;
-		if (!custID) return;
+		const UserID = Number(import.meta.env.VITE_CUSTID);
 
 		const loginValues = {
-			CustId: custID,
+			CustId: UserID,
 			Username: data.Username,
 			Password: data.Password,
 		};
@@ -76,7 +60,7 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 
 		const userdetails = {
 			user: logInData.fullname,
-			custID: custID,
+			custID: UserID,
 			email: logInData.email,
 			firstName: logInData?.firstname,
 			lastName: logInData?.lastname,
@@ -91,9 +75,9 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 	return (
 		<div className="h-svh w-full flex justify-center items-center">
 			<div className="rounded-xl p-6">
-				{loading && <div>Loading...</div>}
 				<div>
 					{error && <div className="text-red-500 text-center">{error}</div>}
+					{loading && <Loader progress={60} />}
 				</div>
 				<Form
 					style={{
@@ -106,6 +90,8 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 						<FormItem label="Username">
 							<Input
 								type="Text"
+								value="irmbot1"
+								readonly
 								className="mb-6 w-[50%]"
 								{...register("Username")}
 							/>
@@ -144,6 +130,7 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 						</Button>
 					</FormGroup>
 				</Form>
+				L
 			</div>
 		</div>
 	);

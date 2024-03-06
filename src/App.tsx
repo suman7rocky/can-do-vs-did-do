@@ -37,7 +37,7 @@ function App() {
 						<Navbar
 							setIsLoggedIn={setIsLoggedIn}
 							companyName="TRP Global"
-							productName="Process Control Flow"
+							productName="iRM"
 							isNotifiction={true}
 							notificationCount="10"
 							companyLogo={companyLogo}
