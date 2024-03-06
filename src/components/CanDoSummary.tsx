@@ -14,6 +14,7 @@ import { candoDataType } from "../utils/types";
 import CanDoDetailsData from "./CanDoDetailsData";
 import { useCallback, useEffect, useState } from "react";
 import CanDoSummaryHeader from "./CanDoSummaryHeader";
+import { deleteCookie } from "../lib/deleteCookie";
 
 const CanDoSummary = () => {
 	const [, setSodSection] = useState<boolean>(false);
@@ -152,6 +153,8 @@ const CanDoSummary = () => {
 					const axiosError: AxiosError = error;
 					if (axiosError.code === "ERR_BAD_REQUEST") {
 						localStorage.removeItem("userdetails");
+						deleteCookie("authToken");
+						window.location.reload();
 					}
 				}
 			} catch (error) {
@@ -188,6 +191,7 @@ const CanDoSummary = () => {
 			accessor: "BUSINESS_PROCESS",
 			headerTooltip: "Business Process",
 			disableDragAndDrop: true,
+			width: 200,
 		},
 		{
 			Header: "Rule Name",

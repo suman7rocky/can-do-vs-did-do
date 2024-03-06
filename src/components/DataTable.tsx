@@ -24,6 +24,8 @@ const DataTable = ({ data }: DataTableProps) => {
 
 	const showDataFor = Number(syncID[1]);
 
+	const bottomValue = "0";
+
 	return (
 		<Card className="p-3">
 			<Table
@@ -94,7 +96,8 @@ const DataTable = ({ data }: DataTableProps) => {
 					<TableCell>
 						<Label className="boldText ">
 							{data.mstObj[showDataFor]?.High.rules || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 
@@ -102,7 +105,8 @@ const DataTable = ({ data }: DataTableProps) => {
 					<TableCell>
 						<Label className="boldText">
 							{data.mstObj[showDataFor]?.Medium.rules || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 
@@ -111,7 +115,8 @@ const DataTable = ({ data }: DataTableProps) => {
 						<Label className="boldText">
 							{data.mstObj[showDataFor]?.High.rules +
 								data.mstObj[showDataFor]?.Medium.rules || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 
@@ -119,7 +124,8 @@ const DataTable = ({ data }: DataTableProps) => {
 					<TableCell>
 						<Label className="boldText">
 							{data.mstObj[showDataFor]?.Sensitive.rules || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 				</TableRow>
@@ -150,26 +156,30 @@ const DataTable = ({ data }: DataTableProps) => {
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.High.sod_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.Medium.sod_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{Number(data.exobj[showDataFor]?.High.sod_name) +
 								Number(data.exobj[showDataFor]?.Medium.sod_name) || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.Sensitive.sod_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 				</TableRow>
@@ -199,25 +209,29 @@ const DataTable = ({ data }: DataTableProps) => {
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.High.user_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.Medium.user_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{data.userRole[0]?.users || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 					<TableCell>
 						<Label className="boldText">
 							{data.exobj[showDataFor]?.Sensitive.user_name || 0}
-							<span>{}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 				</TableRow>
@@ -247,26 +261,33 @@ const DataTable = ({ data }: DataTableProps) => {
 
 					<TableCell>
 						<Label className="boldText">
-							{data.exobj[showDataFor]?.High.role_name || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.High.role_name || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText">
-							{data.exobj[showDataFor]?.Medium.role_name || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.Medium.role_name || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText">
-							{data.userRole[0]?.roles || 0}
-							<span>{}</span>
+							<span>{data.userRole[0]?.roles || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText">
-							{data.exobj[showDataFor]?.Sensitive.role_name || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.Sensitive.role_name || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 				</TableRow>
@@ -296,27 +317,36 @@ const DataTable = ({ data }: DataTableProps) => {
 
 					<TableCell>
 						<Label className="boldText">
-							{data.exobj[showDataFor]?.High.instances || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.High.instances || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText">
-							{data.exobj[showDataFor]?.Medium.instances || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.Medium.instances || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText">
-							{Number(data.exobj[showDataFor]?.High.instances) +
-								Number(data.exobj[showDataFor]?.Medium.instances) || 0}
-							<span>{}</span>
+							<span>
+								{Number(data.exobj[showDataFor]?.High.instances) +
+									Number(data.exobj[showDataFor]?.Medium.instances) || 0}
+							</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
+
 					<TableCell>
 						<Label className="boldText text-center">
-							{data.exobj[showDataFor]?.Sensitive.instances || 0}
-							<span>{}</span>
+							<span>{data.exobj[showDataFor]?.Sensitive.instances || 0}</span>
+							<br />
+							<span>{bottomValue}%</span>
 						</Label>
 					</TableCell>
 				</TableRow>

@@ -19,7 +19,7 @@ export default defineConfig({
 	},
 	build: {
 		target: "esnext",
-		cssCodeSplit: false,
+		cssCodeSplit: true,
 		minify: "esbuild",
 		cssMinify: "esbuild",
 	},

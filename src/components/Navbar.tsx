@@ -18,6 +18,7 @@ import { useSidebar } from "../hooks/useSidebar";
 
 import { ThemingParameters, spacing } from "@ui5/webcomponents-react-base";
 import "../navbar.css";
+import { deleteCookie } from "../lib/deleteCookie";
 
 type NavbarProps = {
 	companyName: string;
@@ -68,7 +69,9 @@ const Navbar = ({
 		const user = localStorage.getItem("userdetails");
 		if (user) {
 			localStorage.removeItem("userdetails");
+			deleteCookie("authToken");
 			setIsLoggedIn(false);
+			window.location.reload();
 		}
 	};
 

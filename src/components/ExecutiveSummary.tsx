@@ -8,6 +8,7 @@ import { ApiResponse } from "../utils/types";
 import { calcPercentage } from "../utils/calcPercentage";
 import TableHeader from "./TableHeader";
 import { useState, useEffect, useCallback } from "react";
+import { deleteCookie } from "../lib/deleteCookie";
 
 const ExecutiveSummary = () => {
 	const [, setSod] = useState<boolean>(false);
@@ -142,6 +143,8 @@ const ExecutiveSummary = () => {
 					const axiosError: AxiosError = error;
 					if (axiosError.code === "ERR_BAD_REQUEST") {
 						localStorage.removeItem("userdetails");
+						deleteCookie("authToken");
+						window.location.reload();
 					}
 				}
 			} catch (error) {
