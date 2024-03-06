@@ -158,7 +158,7 @@ const CanDoDetailsData = ({ rule }: CanDoDetailsDataProps) => {
 
 	const canDoDetailsData = data;
 	if (isError) {
-		return <div>Something went wrong</div>;
+		console.error("Error fetching data");
 	}
 
 	const columns = [

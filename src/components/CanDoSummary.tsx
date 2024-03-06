@@ -179,7 +179,7 @@ const CanDoSummary = () => {
 	const canDoSummaryData = data;
 
 	if (isError) {
-		return <div>Something went wrong</div>;
+		console.error("Error fetching data");
 	}
 
 	const columns = [

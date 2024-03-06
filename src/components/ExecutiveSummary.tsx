@@ -17,7 +17,6 @@ const ExecutiveSummary = () => {
 
 	const queryClient = useQueryClient();
 
-
 	const endPoint = `${
 		import.meta.env.VITE_BASE_LOGIN_URL
 	}/api/irmbi/read/executivechartdata`;
@@ -182,7 +181,7 @@ const ExecutiveSummary = () => {
 	const procureToPay = calcPercentage(procureToPayValue, infoTechValue);
 
 	if (isError) {
-		return <div>Something went wrong</div>;
+		console.error("Error fetching data");
 	}
 
 	return (

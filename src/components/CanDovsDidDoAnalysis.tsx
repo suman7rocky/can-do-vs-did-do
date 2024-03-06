@@ -159,7 +159,7 @@ const CanDovsDidDoAnalysis = () => {
 	const canDoVSDidDoAnalysisData: CanDovsDidDoDataApiResponse = data;
 
 	if (isError) {
-		return <div>Something went wrong</div>;
+		console.error("Error fetching data");
 	}
 
 	const showModal = ({ jsonData }: { jsonData: string }) => {

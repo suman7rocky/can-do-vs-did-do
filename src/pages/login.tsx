@@ -72,6 +72,9 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 		setIsLoggedIn(true);
 	};
 
+	const hardcodedUsername = "irmbot1";
+	const hardcodedPassword = import.meta.env.VITE_LOGIN_PASS;
+
 	return (
 		<div className="h-svh w-full flex justify-center items-center">
 			<div className="rounded-xl p-6">
@@ -90,12 +93,12 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 						<FormItem label="Username">
 							<Input
 								type="Text"
-								value="irmbot1"
+								value={hardcodedUsername}
 								readonly
 								className="mb-6 w-[50%]"
 								{...register("Username")}
 							/>
-							{errors.Username && (
+							{errors.Username && hardcodedUsername !== "irmbot1" && (
 								<span className="text-red-500 text-center block">
 									{errors.Username.message}
 								</span>
@@ -105,15 +108,16 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 							<Input
 								readonly
 								className="mb-6 w-[50%]"
-								value={`${import.meta.env.VITE_LOGIN_PASS}`}
+								value={hardcodedPassword}
 								type="Password"
 								{...register("Password")}
 							/>
-							{errors.Password && (
-								<span className="text-red-500 text-center block">
-									{errors.Password.message}
-								</span>
-							)}
+							{errors.Password &&
+								hardcodedPassword !== import.meta.env.VITE_LOGIN_PASS && (
+									<span className="text-red-500 text-center block">
+										{errors.Password.message}
+									</span>
+								)}
 						</FormItem>
 						<FormItem label="Remember me">
 							<CheckBox
@@ -125,12 +129,11 @@ const SignIn = ({ setIsLoggedIn }: SignInProps) => {
 							disabled={loading}
 							design="Default"
 							type="Submit"
-							className="bg-blue-500 text-white  rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+							className="bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
 							Sign In
 						</Button>
 					</FormGroup>
 				</Form>
-				L
 			</div>
 		</div>
 	);
