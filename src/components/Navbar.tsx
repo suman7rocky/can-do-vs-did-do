@@ -6,6 +6,7 @@ import paletteIcon from "@ui5/webcomponents-icons/dist/palette.js";
 import {
 	Avatar,
 	Button,
+	Icon,
 	ListPropTypes,
 	ResponsivePopoverDomRef,
 	ShellBar,
@@ -38,8 +39,6 @@ const Navbar = ({
 	productName,
 	isNotifiction,
 	notificationCount,
-	userName,
-	userImage,
 	setIsLoggedIn,
 	themeSwitch,
 }: NavbarProps) => {
@@ -99,10 +98,7 @@ const Navbar = ({
 				primaryTitle={productName}
 				profile={
 					<Avatar>
-						<img
-							src={userImage}
-							alt={userName}
-						/>
+						<Icon name="employee" />
 					</Avatar>
 				}
 				showNotifications={isNotifiction}

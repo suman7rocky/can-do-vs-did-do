@@ -1,10 +1,10 @@
 import { Suspense, useEffect, useState } from "react";
 import { FlexBox } from "@ui5/webcomponents-react";
 import companyLogo from "./assets/images/irm.png";
-import userImage from "./assets/images/userImages/user1.jpg";
 import Navbar from "./components/Navbar";
 import SideNavbar from "./components/SideNavbar";
 import Dashboard from "./pages/dashboard";
+import employee from "@ui5/webcomponents-icons/dist/employee.js";
 import routes from "./lib/data";
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
@@ -41,7 +41,7 @@ function App() {
 							isNotifiction={true}
 							notificationCount="10"
 							companyLogo={companyLogo}
-							userImage={userImage}
+							userImage={employee}
 							userName="John Doe"
 							themeSwitch={setTheme}
 						/>
